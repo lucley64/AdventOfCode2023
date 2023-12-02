@@ -20,7 +20,7 @@ void day2::part1() {
 
         while (std::getline(input, line)) {
             size_t startPos = 5, endPos = line.find(": ");
-            auto game = atoi(line.substr(startPos, endPos - startPos).c_str());
+            auto game = std::stoi(line.substr(startPos, endPos - startPos));
             startPos = endPos + 2;
             std::string colors;
             const std::regex greenMatch("(\\d+) green");
@@ -31,15 +31,15 @@ void day2::part1() {
                 colors = line.substr(startPos, endPos - startPos);
                 std::smatch res;
                 if (std::regex_search(colors.cbegin(), colors.cend(), res, redMatch)) {
-                    const auto redCount = atoi(res[0].str().c_str());
+                    const auto redCount = std::stoi(res[0].str());
                     valid = redCount <= 12;
                 }
                 if (valid && std::regex_search(colors.cbegin(), colors.cend(), res, greenMatch)) {
-                    const auto greenCount = atoi(res[0].str().c_str());
+                    const auto greenCount = std::stoi(res[0].str());
                     valid = greenCount <= 13;
                 }
                 if (valid && std::regex_search(colors.cbegin(), colors.cend(), res, blueMatch)) {
-                    const auto blueCount = atoi(res[0].str().c_str());
+                    const auto blueCount = std::stoi(res[0].str());
                     valid = blueCount <= 14;
                 }
 
@@ -49,15 +49,15 @@ void day2::part1() {
                 colors = line.substr(startPos, line.size() - startPos);
                 std::smatch res;
                 if (std::regex_search(colors.cbegin(), colors.cend(), res, redMatch)) {
-                    const auto redCount = atoi(res[0].str().c_str());
+                    const auto redCount = std::stoi(res[0].str());
                     valid = redCount <= 12;
                 }
                 if (valid && std::regex_search(colors.cbegin(), colors.cend(), res, greenMatch)) {
-                    const auto greenCount = atoi(res[0].str().c_str());
+                    const auto greenCount = std::stoi(res[0].str());
                     valid = greenCount <= 13;
                 }
                 if (valid && std::regex_search(colors.cbegin(), colors.cend(), res, blueMatch)) {
-                    const auto blueCount = atoi(res[0].str().c_str());
+                    const auto blueCount = std::stoi(res[0].str());
                     valid = blueCount <= 14;
                 }
                 if (valid) {
@@ -80,8 +80,7 @@ void day2::part2() {
         int count = 0;
 
         while (std::getline(input, line)) {
-            size_t startPos = 5, endPos = line.find(": ");
-            auto game = atoi(line.substr(startPos, endPos - startPos).c_str());
+            size_t startPos, endPos = line.find(": ");
             startPos = endPos + 2;
             std::string colors;
             const std::regex greenMatch("(\\d+) green");
@@ -92,15 +91,15 @@ void day2::part2() {
                 colors = line.substr(startPos, endPos - startPos);
                 std::smatch res;
                 if (std::regex_search(colors.cbegin(), colors.cend(), res, redMatch)) {
-                    const auto redCount = atoi(res[0].str().c_str());
+                    const auto redCount = std::stoi(res[0].str());
                     maxRed = maxRed < redCount ? redCount : maxRed;
                 }
                 if (std::regex_search(colors.cbegin(), colors.cend(), res, greenMatch)) {
-                    const auto greenCount = atoi(res[0].str().c_str());
+                    const auto greenCount = std::stoi(res[0].str());
                     maxGreen = maxGreen < greenCount ? greenCount : maxGreen;
                 }
                 if (std::regex_search(colors.cbegin(), colors.cend(), res, blueMatch)) {
-                    const auto blueCount = atoi(res[0].str().c_str());
+                    const auto blueCount = std::stoi(res[0].str());
                     maxBlue = maxBlue < blueCount ? blueCount : maxBlue;
                 }
 
@@ -109,15 +108,15 @@ void day2::part2() {
             colors = line.substr(startPos, line.size() - startPos);
             std::smatch res;
             if (std::regex_search(colors.cbegin(), colors.cend(), res, redMatch)) {
-                const auto redCount = atoi(res[0].str().c_str());
+                const auto redCount = std::stoi(res[0].str());
                 maxRed = maxRed < redCount ? redCount : maxRed;
             }
             if (std::regex_search(colors.cbegin(), colors.cend(), res, greenMatch)) {
-                const auto greenCount = atoi(res[0].str().c_str());
+                const auto greenCount = std::stoi(res[0].str());
                 maxGreen = maxGreen < greenCount ? greenCount : maxGreen;
             }
             if (std::regex_search(colors.cbegin(), colors.cend(), res, blueMatch)) {
-                const auto blueCount = atoi(res[0].str().c_str());
+                const auto blueCount = std::stoi(res[0].str());
                 maxBlue = maxBlue < blueCount ? blueCount : maxBlue;
             }
             count += maxRed * maxGreen * maxBlue;
